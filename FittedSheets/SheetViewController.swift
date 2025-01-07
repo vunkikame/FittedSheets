@@ -669,10 +669,9 @@ public class SheetViewController: UIViewController {
     }
     
     /// Animates the sheet out, but only if presenting using the inline mode
-    public func animateOut(duration: TimeInterval = 0.3, completion: (() -> Void)? = nil) {
+    func animateOut(duration: TimeInterval = 0.35, completion: (() -> Void)? = nil) {
         guard self.options.useInlineMode else { return }
         let contentView = self.contentViewController.view!
-        
         UIView.animate(
             withDuration: duration,
             delay: 0,
@@ -682,13 +681,15 @@ public class SheetViewController: UIViewController {
             animations: {
                 contentView.transform = CGAffineTransform(translationX: 0, y: contentView.bounds.height)
                 self.overlayView.alpha = 0
-            },
-            completion: { _ in
+            }
+        ) { _ in
+            // Chờ thời gian chính xác để bảo đảm hoàn thành
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
                 self.view.removeFromSuperview()
                 self.removeFromParent()
                 completion?()
             }
-        )
+        }
     }
 }
 
