@@ -668,7 +668,6 @@ public class SheetViewController: UIViewController {
         )
     }
     
-    /// Animates the sheet out, but only if presenting using the inline mode
     func animateOut(duration: TimeInterval = 0.35, completion: (() -> Void)? = nil) {
         guard self.options.useInlineMode else { return }
         let contentView = self.contentViewController.view!
