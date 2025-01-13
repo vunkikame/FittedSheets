@@ -277,7 +277,7 @@ public class SheetContentViewController: UIViewController {
         Constraints(for: pullBarView) {
             $0.top.pinToSuperview()
             $0.left.pinToSuperview()
-            $0.right.pinToSuperview()
+            $0.right.pinToSuperview(inset: 60)
             $0.height.set(options.pullBarHeight)
         }
         self.pullBarView = pullBarView
