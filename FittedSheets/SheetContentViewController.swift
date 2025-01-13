@@ -290,7 +290,7 @@ public class SheetContentViewController: UIViewController {
         self.gripSizeConstraints.forEach({ $0.isActive = false })
         Constraints(for: gripView) {
             $0.centerY.alignWithSuperview()
-            $0.centerX.alignWithSuperview()
+            $0.centerX.alignWithSuperview(offset: 30)
             self.gripSizeConstraints = $0.size.set(self.gripSize)
         }
         
